@@ -30,24 +30,14 @@ Builds a docker image for a pulsar analysis packages and few extras on Ubuntu 16
 - vpsr
 - gpy
 - coast_guard
-- setuptools
-- numpy
-- scipy
-- pandas
-- h5py
-- fitsio
-- astropy
-- astroplan
-- pytz
-- paramz
-- aplpy
-- pyfits
-- peakutils
-- pymc
-- matplotlib
-- seaborn
-- lmfit
-- pyephem
+- miniconda with:
+	- numpy
+	- scipy
+	- pandas
+	- h5py
+	- astropy
+	- matplotlib
+	- seaborn
 - and all their dependencies (pgplot5, fftw, etc)
 
 You'll find all pulsar software in /home/psr/software, environment variables are set according to ~/.mysetenv.bash file.
