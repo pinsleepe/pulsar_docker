@@ -37,7 +37,6 @@ RUN echo 'deb http://us.archive.ubuntu.com/ubuntu trusty main multiverse' >> /et
     apt-get -y update --fix-missing && \
     apt-get -y upgrade
 
-
 RUN apt-get -y install \
     apt-utils \
     autoconf \
@@ -225,40 +224,7 @@ RUN apt-get -y install \
     wcslib-dev \
     wcslib-tools \
     wget \
-    zlib1g-dev
-
-
-# Install python modules
-RUN pip install pip -U && \
-    pip install setuptools -U && \
-    pip install datetime -U && \
-    pip install bitstring -U && \
-    pip install ipython -U && \
-    pip install jupyter -U && \
-    pip install runipy -U && \
-    pip install six -U && \
-    pip install numpy -U && \
-    pip install scipy -U && \
-    pip install pandas -U && \
-    pip install h5py -U && \
-    pip install fitsio -U && \
-    pip install astropy -U && \
-    pip install astroplan -U && \
-    pip install astropy_helpers -U && \
-    pip install astroquery -U && \
-    pip install pytz -U && \
-    pip install paramz -U && \
-    pip install APLpy -U && \
-    pip install pyfits -U && \
-    pip install bitstring -U && \
-    pip install cycler -U && \
-    pip install peakutils -U && \
-    #pip install pymc -U && \
-    pip install matplotlib -U && \
-    pip install seaborn -U && \
-    pip install lmfit -U && \
-    pip install pyephem
-
+    zlib1g-dev 
 
 # Switch account to psr
 USER psr
@@ -313,6 +279,7 @@ RUN wget http://www.imcce.fr/fr/presentation/equipes/ASD/inpop/calceph/calceph-2
     wget http://downloads.sourceforge.net/project/healpix/Healpix_3.31/Healpix_3.31_2016Aug26.tar.gz && \
     tar -xvvf Healpix_3.31_2016Aug26.tar.gz && \
     wget ftp://ftp.astron.nl/outgoing/Measures/WSRT_Measures.ztar && \
+    wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh  && \
     git clone https://github.com/SixByNine/psrxml.git && \
     git clone https://bitbucket.org/psrsoft/tempo2.git && \
     git clone https://git.code.sf.net/p/tempo/tempo && \
@@ -331,6 +298,31 @@ RUN wget http://www.imcce.fr/fr/presentation/equipes/ASD/inpop/calceph/calceph-2
     git clone https://github.com/SheffieldML/GPy.git && \
     git clone https://github.com/mserylak/coast_guard.git
 
+
+# Install miniconda to /miniconda
+USER root
+RUN bash Miniconda-latest-Linux-x86_64.sh -p /miniconda -b
+RUN rm Miniconda-latest-Linux-x86_64.sh
+ENV PATH=/miniconda/bin:${PATH}
+RUN conda update -y conda
+
+# Python packages from conda
+RUN conda config --add channels https://conda.anaconda.org/openastronomy
+RUN conda install -y \
+	ipython  \
+	jupyter  \
+	numpy  \
+	scipy  \
+	pandas  \
+	h5py  \
+	astropy  \
+	matplotlib  \
+	seaborn  
+RUN conda remove -y --force readline
+RUN pip install readline -U 
+
+# Switch account to psr
+USER psr
 
 # PGPLOT
 ENV PGPLOT_DIR /usr/lib/pgplot5
