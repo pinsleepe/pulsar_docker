@@ -1,35 +1,8 @@
 # pulsar_docker
-Builds a docker image for a pulsar analysis packages and few extras on Ubuntu 16.04 LTS.
+Builds a docker image for a pulsar analysis packages with sigpyproc and few extras on Ubuntu 16.04 LTS. Base forked from @mserylak. 
 
 # Includes
-- calceph
-- ds9
-- fv
-- psrcat
-- tempo
-- tempo2
-- psrxml
-- psrchive
-- sofa c-library
-- sofa fortran-library
-- sigproc
 - sigpyproc
-- h5check
-- dal
-- dspsr
-- geographicLib
-- h5edit
-- fitsverify
-- psrsalsa
-- pypsrfits
-- presto
-- wapp2psrfits
-- psrfits2psrfits
-- psrfits_utils
-- pyslalib
-- vpsr
-- gpy
-- coast_guard
 - miniconda with:
 	- numpy
 	- scipy
@@ -38,7 +11,7 @@ Builds a docker image for a pulsar analysis packages and few extras on Ubuntu 16
 	- astropy
 	- matplotlib
 	- seaborn
-- and all their dependencies (pgplot5, fftw, etc)
+- and all their dependencies (fftw, etc)
 
 You'll find all pulsar software in /home/psr/software, environment variables are set according to ~/.mysetenv.bash file.
 
@@ -66,4 +39,5 @@ Check if container is running with docker ps -a. You can log in using **psr** as
     ssh -XY psr@localhost -p 2222
 
 # Issues
-Report problems to mserylak@ska.ac.za
+Change permissions on /miniconda folder: TODO.
+Report problems to mobrocka@ska.ac.za
