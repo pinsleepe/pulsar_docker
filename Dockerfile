@@ -212,7 +212,8 @@ RUN apt-get -y install \
     wcslib-dev \
     wcslib-tools \
     wget \
-    zlib1g-dev 
+    zlib1g-dev \
+    firefox
 
 # Switch account to psr
 USER psr
