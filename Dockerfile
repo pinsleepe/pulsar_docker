@@ -250,9 +250,11 @@ RUN conda install -y \
 	h5py  \
 	astropy  \
 	matplotlib  \
-	seaborn  
+	seaborn \
+        mpld3 
 RUN conda remove -y --force readline
 RUN pip install readline -U 
+RUN pip install rfipip
 
 # Switch account to psr
 USER psr
