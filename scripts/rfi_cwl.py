@@ -1,6 +1,7 @@
 #!/usr/local/bin/python
 from rfipip import rfiObs, rfiDatabase
 import matplotlib.pyplot as plt, mpld3
+matplotlib.use('Agg')
 import numpy as np
 import argparse
 
