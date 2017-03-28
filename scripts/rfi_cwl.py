@@ -1,8 +1,8 @@
 #!/usr/local/bin/python
-from rfipip import rfiObs, rfiDatabase
-import matplotlib.pyplot as plt, mpld3
 import matplotlib
 matplotlib.use('Agg')
+from rfipip import rfiObs, rfiDatabase
+import matplotlib.pyplot as plt, mpld3
 import numpy as np
 import argparse
 
