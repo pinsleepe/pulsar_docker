@@ -212,8 +212,15 @@ RUN apt-get -y install \
     wcslib-dev \
     wcslib-tools \
     wget \
+    curl \
     zlib1g-dev \
     firefox
+
+# download python script
+WORKDIR /home/psr
+RUN wget https://raw.githubusercontent.com/pinsleepe/pulsar_docker/master/scripts/rfi_cwl.py 
+RUN chmod 755 rfi_cwl.py 
+ENV PATH=/home/psr:${PATH}
 
 # Switch account to psr
 USER psr
